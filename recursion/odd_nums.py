@@ -13,6 +13,25 @@ def get_odd_nums(arr, odds = []):
 print(get_odd_nums([1,4,5,3,6,8,9]))
 
 
+def get_odds_build(arr):
+    odds = []
+    length = len(arr)
+
+    if length == 0:
+        return odds
+
+    if arr[length - 1] % 2 == 1:
+        odds.append(arr[length - 1])
+
+    arr.pop(length - 1)
+
+    odds += get_odds_build(arr)
+
+    return odds
+
+print(get_odds_build([1,4,5,3,6,8,9]))
+
+
 def get_odds_helper(arr):
     odds = []
 
