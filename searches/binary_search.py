@@ -31,19 +31,16 @@ def bin_search_index(arr, target):
             return -1
 
         mid = floor((a + b)/2)
-        print("mid", mid)
 
         if arr[mid] == target:
             return mid
 
         if arr[mid] < target:
             a = mid + 1
-            print("new a", a)
             return scan(a, b)
 
         if arr[mid] > target:
             b = mid - 1
-            print("new b", b)
             return scan(a, b)
 
     return scan(left, right)
