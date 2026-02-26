@@ -16,7 +16,7 @@ def bin_search_exists(arr, target):
         return bin_search_exists(arr[:mid],  target)
 
 arr = [1,3,4,5,7,9,12,17,22,25,30]
-print(bin_search_exists(arr, 8))
+print(bin_search_exists(arr, 22))
 
 
 def bin_search_index(arr, target):
@@ -24,9 +24,6 @@ def bin_search_index(arr, target):
     right = len(arr) - 1
 
     def scan(a, b):
-        print("a", a)
-        print("b", b)
-
         if a > b:
             return -1
 
@@ -48,5 +45,5 @@ def bin_search_index(arr, target):
 
 
 arr = [1,3,4,5,7,9,12,17,22,25,30]
-print(bin_search_index(arr, 8))
+print(bin_search_index(arr, 22))
 
