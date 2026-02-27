@@ -1,4 +1,7 @@
 def selection_sort(arr, comp = True):
+    """passes through the array n times and finds the next lowest value
+       on each pass and inserts it to the n farthest left index
+    """
     def cmp(a, b):
         return a < b if comp  else  a > b
 
