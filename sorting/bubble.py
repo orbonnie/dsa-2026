@@ -2,6 +2,7 @@ def bubble_sort(arr):
     loops = 0
 
     for i, _ in enumerate(arr):
+        swaps = False
         for j in range(0, len(arr) - i - 1):
             loops += 1
             if arr[j] > arr[j + 1]:
