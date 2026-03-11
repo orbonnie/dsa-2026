@@ -1,3 +1,5 @@
+export {};
+
 class ListNode {
   value: number
   next: (ListNode | null)
@@ -93,7 +95,7 @@ class SinglyLinkedList {
   }
 
   get(idx: number) {
-    if(idx < 0|| idx >= this.length) return;
+    if(idx < 0 || idx >= this.length) return;
 
     let curr = this.head;
 
