@@ -23,7 +23,10 @@ class HashTable {
     let bucket = this.keyMap[index];
 
     if(Array.isArray(bucket)) {
-      if(!bucket.some(tuple => tuple[0] === key)) {
+      const existing = bucket.find(tuple => tuple[0] === key);
+      if(existing) {
+        existing[1] = value;
+      } else {
         bucket.push(item);
       }
     } else {
@@ -74,7 +77,7 @@ ht.set("oranges", 5);
 ht.set("apples", 3);
 ht.set("eggs", 12);
 ht.set("plums", 12);
-ht.set("milk", 5);
+ht.set("milk", 4);
 ht.set("oranges", 10);
 
 // console.log(ht.get("apples"));
