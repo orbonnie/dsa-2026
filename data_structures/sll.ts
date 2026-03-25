@@ -27,34 +27,29 @@ class SinglyLinkedList {
     }
 
     this.length++;
-
     return this;
   }
 
   pop() {
-    let curr = this.head;
-    if (!curr) return;
+    if (!this.head) return;
 
+    const old_tail = this.tail
 
-    if (curr === this.tail) {
-      const poppedNode = this.head;
+    if (this.length === 1) {
       this.head = null;
       this.tail = null;
-      this.length--;
-
-      return poppedNode;
+    } else {
+      let new_tail: any = this.head
+      while(new_tail.next !== this.tail) {
+        new_tail = new_tail.next;
+      }
+      this.tail = new_tail;
+      this.tail!.next = null;
     }
 
-    while(curr!.next !== this.tail) {
-      curr = curr!.next;
-    }
-
-    const poppedNode = curr!.next;
-    this.tail = curr;
-    this.tail!.next = null;
     this.length--;
 
-    return poppedNode;
+    return old_tail;
   }
 
   shift() {
@@ -62,20 +57,14 @@ class SinglyLinkedList {
 
     if(!curr) return;
 
-    const popped = curr;
-
     if(curr === this.tail) {
       this.head = null;
       this.tail = null;
-      this.length--;
+    } else this.head = curr.next;
 
-      return popped;
-    }
-
-    this.head = curr.next;
     this.length--;
 
-    return popped;
+    return curr;
   }
 
   unshift(val: any) {
@@ -189,38 +178,42 @@ list.push(8);
 list.unshift(5);
 list.unshift(6);
 list.unshift(7);
-// 7, 6, 5, 3, 10, 8
+
 list.insert(3, 4);
-// console.log(list.get(2));
-// console.log(list.get(3));
-// console.log(list.get(4));
+// 7, 6, 5, 4, 3, 10, 8
+console.log(list.get(2));
+console.log(list.get(3));
+console.log(list.get(4));
 console.log(list.insert(7, 50));
 console.log(list.get(7));
 console.log(list.insert(0, 0));
 console.log(list.insert(10, 100));
 // 0, 7, 6, 5, 4, 3, 10, 8, 50
-// console.log(list.remove(0));
-// console.log(list.remove(8));
-// console.log(list.remove(7));
+console.log(list.remove(0)?.value);
+list.print();
+console.log(list.remove(8));
+console.log(list.remove(7)?.value);
+list.print();
 // 7, 6, 5, 4, 3, 10, 8
-// console.log(list.remove(3));
+console.log(list.remove(3)?.value);
+list.print();
 // 7, 6, 5, 3, 10, 8
-// console.log(list.get(3));
-// console.log(list.insert(-10, 100));
+console.log(list.get(3));
+console.log(list.insert(-10, 100));
 console.log(list);
 console.log(list.reverse());
-// 0, 7, 6, 5, 4, 3, 10, 8, 50
-// console.log(list.get(2));
-// console.log(list.set(2, 11));
-// console.log(list.set(-8, 11));
-// console.log(list.get(2));
-// console.log(list.get(6));
-// console.log(list.get(-2));
-// console.log(list.shift());
-// console.log(list.shift());
-// console.log(list.shift());
-// console.log(list.shift());
-// console.log(list.pop());
-// console.log(list.pop());
-// console.log(list.pop());
-// console.log(list.pop());
+
+console.log(list.get(2));
+console.log(list.set(2, 11));
+console.log(list.set(-8, 11));
+console.log(list.get(2));
+console.log(list.get(6));
+console.log(list.get(-2));
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.pop());
+console.log(list.pop());
+console.log(list.pop());
+console.log(list.pop());

@@ -32,6 +32,7 @@ class Singly_Linked_List:
 
     def pop(self):
         old_tail = self.tail
+
         if not old_tail: return
 
         if self.length == 1:
@@ -130,8 +131,27 @@ class Singly_Linked_List:
         return old_node
 
 
-    def reverse():
-        pass
+    def reverse(self):
+        if self.length < 2: return self
+
+        old_head = self.head
+        next_node = None
+        prev_node = None
+        curr_node = self.head
+
+        while curr_node:
+            next_node = curr_node.next
+            curr_node.next = prev_node
+            prev_node = curr_node
+            curr_node = next_node
+
+        self.head = prev_node
+        self.tail = old_head
+
+        self.print()
+
+        return self
+
 
     def print(self):
         display = []
@@ -200,6 +220,7 @@ print(sll.remove(7).val)
 print(sll.remove(13))
 print(sll.remove(-4))
 sll.print()
+sll.reverse()
 
 # for att, v in vars(first).items():
 #     print(f"{att:>12} : {v}")
