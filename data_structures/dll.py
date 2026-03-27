@@ -54,22 +54,103 @@ class DoublyLinkedList:
 
 
     def shift(self):
-        pass
+        old_head = self.head
+        if not self.length: return
+
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+            old_head.next = None
+
+        self.length -= 1
+
+        return old_head
+
 
     def unshift(self, val):
-        pass
+        new_node = Node(val)
+
+        if not self.length:
+            self.tail = new_node
+        else:
+            self.head.prev = new_node
+            new_node.next = self.head
+
+        self.head = new_node
+        self.length += 1
+
+        return self
+
 
     def get(self, idx):
-        pass
+        if idx >= self.length or idx < 0: return
+
+        curr = None
+
+        if (self.length - idx) > idx:
+            curr = self.head
+            for i in range(idx):
+                curr = curr.next
+        else:
+            curr = self.tail
+            for i in range(self.length -1, idx, -1):
+                curr = curr.prev
+
+        return curr
+
 
     def set(self, idx, val):
-        pass
+        node = self.get(idx)
+
+        if not node: return False
+
+        node.value = val
+
+        return True
+
 
     def insert(self, idx, val):
-        pass
+        new_node = Node(val)
+        prev_node = self.get(idx - 1)
+
+        if idx == 0: self.unshift(val)
+        elif idx == self.length: self.push(val)
+        elif not prev_node: return False
+        else:
+            next_node = prev_node.next
+
+            new_node.next = next_node
+            new_node.prev = prev_node
+            prev_node.next = new_node
+            next_node.prev = new_node
+
+            self.length += 1
+
+        return True
+
 
     def remove(self, idx):
-        pass
+        curr_node = self.get(idx)
+
+        if idx == 0: return self.shift()
+        if idx == self.length - 1: return self.pop()
+        if not curr_node: return
+
+        prev_node = curr_node.prev
+        next_node = curr_node.next
+        prev_node.next = next_node
+        next_node.prev = prev_node
+
+        curr_node.prev = None
+        curr_node.next = None
+
+        self.length -= 1
+
+        return curr_node
+
 
     def print(self):
         display = []
@@ -97,9 +178,27 @@ dll.push(7)
 dll.push(9)
 dll.push(11)
 dll.push(12)
+dll.push(13)
+dll.push(14)
+dll.push(15)
 dll.print_list()
-dll.print()
+# dll.print()
+# 7 9 11 12
+print(dll.get(2).value)
+dll.set(5, 20)
+dll.print_list()
+dll.remove(4)
+dll.insert(2, 10)
+dll.print_list()
 
+print(dll.insert(12, 10))
+print(dll.insert(-2, 10))
+print(dll.set(-2, 10))
+print(dll.set(12, 10))
+print(dll.get(-3))
+print(dll.get(13))
+print(dll.remove(14))
+print(dll.remove(-4))
 # print(dll.pop().value)
 # print(dll.pop().value)
 # dll.print_list()
